@@ -39,7 +39,7 @@ def getI2cSensors(devices):
     newObject['message'] = 'No devices specified.'
     return (False, newObject)
 
-  if 'bh750' in devices:
+  if 'bh1750' in devices:
     ###### Get luminosity ##
     lux = bh1750.readLight()
     # Drop the first (usually bad)
