@@ -1,4 +1,20 @@
 #!/usr/bin/python
+#--------------------------------------
+#    ___  ___  _ ____          
+#   / _ \/ _ \(_) __/__  __ __ 
+#  / , _/ ___/ /\ \/ _ \/ // / 
+# /_/|_/_/  /_/___/ .__/\_, /  
+#                /_/   /___/   
+#
+#           bh1750.py
+#  Read data from a digital light sensor.
+#
+# Author : Matt Hawkins
+# Date   : 15/04/2015
+#
+# http://www.raspberrypi-spy.co.uk/
+#
+#--------------------------------------
 import smbus
 import time
  
