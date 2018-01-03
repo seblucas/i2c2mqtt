@@ -68,7 +68,8 @@ def getI2cSensors(devices):
 
   return (True, newObject)
 
-parser = argparse.ArgumentParser(description='Read current temperature,illuminance and humidity from i2c sensors and send them to a MQTT broker.')
+parser = argparse.ArgumentParser(description='Read current temperature,illuminance and humidity from i2c sensors and send them to a MQTT broker.',
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('-d', '--device', dest='devices', action="append",
                    help='Specify the devices to probe in the I2C bus. Can be called many times.')
 parser.add_argument('-m', '--mqtt-host', dest='host', action="store", default="127.0.0.1",
