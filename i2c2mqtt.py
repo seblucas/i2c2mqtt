@@ -20,7 +20,7 @@
 
 import bh1750
 import bme280
-import si7201
+import si7021
 import time, json, argparse
 import paho.mqtt.publish as publish # pip install paho-mqtt
 
@@ -47,11 +47,11 @@ def getI2cSensors(devices):
     newObject['lum'] = int (lux)
     debug ("Light Level : " + str(newObject['lum']) + " lx")
 
-  if 'si7201' in devices:
-    ###### Get temperature & humidity from si7201 ##
-    T = si7201.readTemperature()
+  if 'si7021' in devices:
+    ###### Get temperature & humidity from si7021 ##
+    T = si7021.readTemperature()
     newObject['temp'] = round (T, 1)
-    RH = si7201.readHumidity()
+    RH = si7021.readHumidity()
     newObject['hum'] = int (RH)
     debug ("Temperature : " + str(newObject['temp']) + " °C")
     debug ("Humidity : " + str(newObject['hum']) + " %")
