@@ -24,7 +24,7 @@ Easy, first try a dry-run command :
 For now the device can be :
 
  * bh1750
- * si7201
+ * si7021
  * bme280
 
 PR welcomed to add more.
@@ -67,7 +67,7 @@ optional arguments:
 
  * bme280.py comes from [this repository](https://bitbucket.org/MattHawkinsUK/rpispy-misc/raw/master/python/bme280.py)
  * bh1750.py also comes from [this repository](https://bitbucket.org/MattHawkinsUK/rpispy-misc/raw/master/python/bh1750.py)
- * si7201.py was mostly written by me.
+ * si7021.py was mostly written by me.
 
 # License
 
