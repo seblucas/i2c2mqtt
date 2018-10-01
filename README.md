@@ -63,6 +63,25 @@ optional arguments:
   -v, --verbose         Enable debug messages. (default: False)
 ```
 
+## Docker
+
+I added a sample Dockerfile, I personaly use it with a `docker-compose.yml` like this one :
+
+```yml
+version: '3'
+
+services:
+  cron-i2c:
+    build: https://github.com/seblucas/i2c2mqtt.git
+    image: i2c-python3-cron:latest
+    restart: always
+    environment:
+      CRON_STRINGS: "1,16,31,46 * * * * i2c2mqtt.py -d bh1750 -d bme280 -m mosquitto -t sensor/i2c"
+      CRON_LOG_LEVEL: 8
+    devices:
+      - "/dev/i2c-1:/dev/i2c-1"
+```
+
 # Credits
 
  * bme280.py comes from [this repository](https://bitbucket.org/MattHawkinsUK/rpispy-misc/raw/master/python/bme280.py)
