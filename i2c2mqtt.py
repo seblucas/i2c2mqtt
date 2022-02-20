@@ -80,19 +80,29 @@ parser.add_argument('-t', '--topic', dest='topic', action="store", default="sens
                    help='The MQTT topic on which to publish the message (if it was a success).')
 parser.add_argument('-T', '--topic-error', dest='topicError', action="store", default="error/sensor/i2c", metavar="TOPIC",
                    help='The MQTT topic on which to publish the message (if it wasn\'t a success).')
+parser.add_argument('-u', '--username', metavar="USERNAME",
+                   help='Username to log into the mqtt broker')
+parser.add_argument('-p', '--password', metavar="PASSWORD",
+                   help='Password to log into the mqtt broker')
+parser.add_argument('-P', '--port', default=1883, metavar="PORT",
+                   help='Port for the mqtt broker')
 parser.add_argument('-v', '--verbose', dest='verbose', action="store_true", default=False,
                    help='Enable debug messages.')
 
 args = parser.parse_args()
 verbose = args.verbose;
 
+mqtt_auth = None
+if args.username:
+  mqtt_auth = {'username': args.username, 'password': args.password}
+
 status, data = getI2cSensors(args.devices)
 jsonString = json.dumps(data)
 if status:
   debug("Success with message (for current readings) <{0}>".format(jsonString))
   if not args.dryRun:
-    publish.single(args.topic, jsonString, hostname=args.host)
+    publish.single(args.topic, jsonString, hostname=args.host, auth=mqtt_auth, port=args.port)
 else:
   debug("Failure with message <{0}>".format(jsonString))
   if not args.dryRun:
-    publish.single(args.topicError, jsonString, hostname=args.host)
+    publish.single(args.topicError, jsonString, hostname=args.host, auth=mqtt_auth, port=args.port)
